@@ -3,7 +3,7 @@ DIR_SRC = ./src
 DIR_OBJ = ./obj
 DIR_BIN = ./bin
 
-cflags=-I/export/data/zjiaad/anaconda3/envs/ghash/include/python3.6m -I/export/data/zjiaad/anaconda3/envs/ghash/include/python3.6m  -Wno-unused-result -Wsign-compare -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O3 -ffunction-sections -pipe -isystem /export/data/zjiaad/anaconda3/envs/ghash/include -fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13 -fdebug-prefix-map=/export/data/zjiaad/anaconda3/envs/ghash=/usr/local/src/conda-prefix -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -flto -DNDEBUG -fwrapv -O3 -Wall
+cflags=-I/export/data/zjiaad/anaconda3/envs/ghash/include/python3.6m -I/export/data/zjiaad/anaconda3/envs/ghash/include/python3.6m  -Wno-unused-result -Wsign-compare -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -ffunction-sections -pipe -isystem /export/data/zjiaad/anaconda3/envs/ghash/include -fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13 -fdebug-prefix-map=/export/data/zjiaad/anaconda3/envs/ghash=/usr/local/src/conda-prefix -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -flto -DNDEBUG -fwrapv -O3 -Wall
 ldflags=-L/export/data/zjiaad/anaconda3/envs/ghash/lib/python3.6/config-3.6m-x86_64-linux-gnu -L/export/data/zjiaad/anaconda3/envs/ghash/lib -lpython3.6m -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic
 
 
