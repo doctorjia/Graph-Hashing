@@ -15,14 +15,14 @@ def train_test_split(input_name, stop_val):
         num_of_spaces = each_line.count(" ")
         if num_of_spaces == 0:
             content = int(each_line.strip("\n"))
-            if content > 222:
+            if content > exceed_val:
                 smallest_graphid = min(content, smallest_graphid)
                 count_graphnum += 1
             if count_graphnum == stop_val:
                 writing_in_train = False
         if num_of_spaces == 1:
             content = each_line.strip("\n").split(" ")
-            if int(content[0]) > 50 or int(content[1]) > 50:
+            if int(content[0]) > exceed_val or int(content[1]) > exceed_val:
                 exceed_val = max(max(int(content[0]), int(content[1])), exceed_val)
         if writing_in_train:
             train_file.write(each_line)
