@@ -68,7 +68,7 @@ dataset = tf.data.Dataset.from_generator(data_fetcher.get_train_data,
                                            tf.TensorShape([FLAGS.batchsize, FLAGS.k]),# gen_label
                                            ))
 dataset = dataset.prefetch(buffer_size=1)
-iterator = dataset.make_one_shot_iterator()
+iterator = tf.compat.v1.data.make_one_shot_iterator(dataset)
 one_element = iterator.get_next()
 next_element = construct_input(one_element)
 
