@@ -51,7 +51,7 @@ def DSH_Loss(codes, label, m = FLAGS.hash_code_len/2):
     # Handle first part of loss
     # Some intermediate results
     M1 = tf.matmul(A1, tf.transpose(A1))
-    diag = tf.squeeze(tf.matrix_diag_part(M1))
+    diag = tf.squeeze(tf.compat.v1.matrix_diag_part(M1))
     M2 = tf.stack([diag for i in range(bs)])
 
     # pred{i,j} = ||d_i - d_j||^2
@@ -113,12 +113,12 @@ def MSE_Loss(codes, label_1, label_2, a, bit_weights=None):
     # Some intermediate results
     if FLAGS.bit_weight_type == 'const' or bit_weights is None:
         M1 = tf.matmul(A1, tf.transpose(A1))
-        diag = tf.squeeze(tf.matrix_diag_part(M1))
+        diag = tf.squeeze(tf.compat.v1.matrix_diag_part(M1))
         M2 = tf.stack([diag for i in range(bs)])
     else:
-        D = tf.nn.relu(tf.matrix_diag(bit_weights))
+        D = tf.nn.relu(tf.compat.v1.matrix_diag(bit_weights))
         M1 = tf.matmul(tf.matmul(A1, D), tf.transpose(A1)) # M1 = A1@D@A1.T
-        diag = tf.squeeze(tf.matrix_diag_part(M1))
+        diag = tf.squeeze(tf.compat.v1.matrix_diag_part(M1))
         M2 = tf.stack([diag for i in range(bs)])
 
     # pred{i,j} = ||d_i - d_j||^2
@@ -126,7 +126,7 @@ def MSE_Loss(codes, label_1, label_2, a, bit_weights=None):
     pred_1 = pred_1 - tf.stop_gradient(tf.where(pred_1>FLAGS.GED_threshold,
                                                 pred_1 - FLAGS.GED_threshold,
                                                 tf.zeros_like(pred_1)))
-    loss_mat_1 = tf.matrix_band_part(tf.exp(a*(pred_1-label_1))*(pred_1 - label_1)**2, 0, -1)
+    loss_mat_1 = tf.compat.v1.matrix_band_part(tf.exp(a*(pred_1-label_1))*(pred_1 - label_1)**2, 0, -1)
     #loss_1 = tf.reduce_sum(loss_mat_1)
     loss_1 = tf.reduce_mean(loss_mat_1)
     

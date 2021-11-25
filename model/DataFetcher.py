@@ -638,17 +638,17 @@ class DataFetcher:
         nxgraph = graph.ori_graph
         fname = 'tmpfile/'+str(time.time()) + '_'+str(nxgraph.graph['gid']) + '.tmpfile'
         f = open(fname, 'w')
-        string = '{:d}\n{:d} {:d}\n'.format(ori_graph['gid'], 
-                                          len(ori_graph['nodes']), 
-                                          len(ori_graph['edges']))
+        string = '{:d}\n{:d} {:d}\n'.format(nxgraph['gid'],
+                                          len(nxgraph['nodes']),
+                                          len(nxgraph['edges']))
         f.write(string)
         label2node = {}
  
-        for n in ori_graph['nodes']:
+        for n in nxgraph['nodes']:
             f.write('%d\n'%n)
 
         
-        for e in ori_graph['edges']:
+        for e in nxgraph['edges']:
             f.write('%d %d 0\n'%(e[0],e[1]))
 #       
 #        for i,n in enumerate(nxgraph.nodes(data=True)):

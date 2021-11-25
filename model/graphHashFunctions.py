@@ -313,10 +313,10 @@ class GraphHash_Emb_Code(Model):
         self.output_dim = FLAGS.hash_code_len
         self.placeholders = placeholders
 
-        self.optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
+        self.optimizer = tf.compat.v1.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
 
         """ Wrapper for _build() """
-        with tf.variable_scope(self.name):
+        with tf.compat.v1.variable_scope(self.name):
             self._build()
 
         if next_ele is not None:
@@ -425,8 +425,8 @@ class GraphHash_Emb_Code(Model):
 
         # Initialize Bit Weights
         if FLAGS.bit_weight_type == 'var':
-            with tf.variable_scope(self.name):
-                with tf.variable_scope(self.name+'_bit_weights'):
+            with tf.compat.v1.variable_scope(self.name):
+                with tf.compat.v1.variable_scope(self.name+'_bit_weights'):
                     self.bit_weights = ones([FLAGS.hash_code_len],name='bit_weights')
         elif FLAGS.bit_weight_type == 'log':
             self.bit_weights = tf.constant([np.log(i+1)+1 for i in range(FLAGS.hash_code_len)], dtype=tf.float32)
@@ -472,7 +472,7 @@ class GraphHash_Emb_Code(Model):
 
        
         # Store model variables for easy access
-        variables = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=self.name)
+        variables = tf.compat.v1.get_collection(tf.compat.v1.GraphKeys.GLOBAL_VARIABLES, scope=self.name)
         self.vars = {var.name: var for var in variables}
 
         self.opt_op = self.optimizer.minimize(self.loss)
@@ -483,11 +483,11 @@ class GraphHash_Emb_Code(Model):
                        placeholders['support'],
                        placeholders['graph_sizes']]
         try: 
-            self.ecd_inputs[0] = tf.sparse.reorder(self.ecd_inputs[0])
-            self.ecd_inputs[1] = tf.sparse.reorder(self.ecd_inputs[1])
+            self.ecd_inputs[0] = tf.compat.v1.sparse.reorder(self.ecd_inputs[0])
+            self.ecd_inputs[1] = tf.compat.v1.sparse.reorder(self.ecd_inputs[1])
         except AttributeError:
-            self.ecd_inputs[0] = tf.sparse_reorder(self.ecd_inputs[0])
-            self.ecd_inputs[1] = tf.sparse_reorder(self.ecd_inputs[1])
+            self.ecd_inputs[0] = tf.compat.v1.sparse_reorder(self.ecd_inputs[0])
+            self.ecd_inputs[1] = tf.compat.v1.sparse_reorder(self.ecd_inputs[1])
  
         self.ecd_activations = []
         self.ecd_activations.append(self.ecd_inputs)

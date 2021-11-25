@@ -1,6 +1,6 @@
 import tensorflow as tf
 # Settings
-flags = tf.app.flags
+flags = tf.compat.v1.flags
 FLAGS = flags.FLAGS
 
 #dataset related
