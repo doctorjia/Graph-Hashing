@@ -16,6 +16,10 @@ def train_test_split(input_name, stop_val):
                 count_graphnum += 1
             if count_graphnum == stop_val:
                 writing_in_train = False
+        if num_of_spaces == 1:
+            content = each_line.strip("\n").split(" ")
+            if int(content[0]) > 50 or int(content[1]) > 50:
+                print("Exceed! Largest threshold should be " + content[0] + " " + content[1])
         if writing_in_train:
             train_file.write(each_line)
         else:
