@@ -30,6 +30,7 @@ from train import train_model, train_GH_CSM
 #from query import rangeQueryCSM
 
 """ environment configuration """
+tf.compat.v1.disable_eager_execution()
 os.environ['CUDA_VISIBLE_DEVICES']='1'
 config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
