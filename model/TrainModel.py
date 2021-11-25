@@ -30,9 +30,9 @@ from train import train_model, train_GH_CSM
 #from query import rangeQueryCSM
 
 """ environment configuration """
-tf.compat.v1.disable_eager_execution()
+tf.disable_eager_execution()
 os.environ['CUDA_VISIBLE_DEVICES']='1'
-config = tf.compat.v1.ConfigProto()
+config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 
 
@@ -43,7 +43,7 @@ saved_files_dir = "SavedModel"
 """ Set random seed """
 random_seed = 123
 np.random.seed(random_seed)
-tf.compat.v1.set_random_seed(random_seed)
+tf.set_random_seed(random_seed)
 seed(random_seed)
 
 
@@ -69,22 +69,22 @@ dataset = tf.data.Dataset.from_generator(data_fetcher.get_train_data,
                                            tf.TensorShape([FLAGS.batchsize, FLAGS.k]),# gen_label
                                            ))
 dataset = dataset.prefetch(buffer_size=1)
-iterator = tf.compat.v1.data.make_one_shot_iterator(dataset)
+iterator = tf.data.make_one_shot_iterator(dataset)
 one_element = iterator.get_next()
 next_element = construct_input(one_element)
 
 
 # Define placeholders
 placeholders = {
-    'support': tf.compat.v1.sparse_placeholder(tf.float32),
-    'features': tf.compat.v1.sparse_placeholder(tf.float32, shape=(None, data_fetcher.get_node_feature_dim())),
-    'labels': tf.compat.v1.placeholder(tf.float32, shape=(FLAGS.batchsize, FLAGS.batchsize)),
-    'dropout': tf.compat.v1.placeholder_with_default(0., shape=()),
+    'support': tf.sparse_placeholder(tf.float32),
+    'features': tf.sparse_placeholder(tf.float32, shape=(None, data_fetcher.get_node_feature_dim())),
+    'labels': tf.placeholder(tf.float32, shape=(FLAGS.batchsize, FLAGS.batchsize)),
+    'dropout': tf.placeholder_with_default(0., shape=()),
 #    'graph_sizes': tf.placeholder(tf.int32, shape=(FLAGS.batchsize*(1+FLAGS.k))),
 #    'graph_sizes': tf.placeholder(tf.int32, shape=(None)),
-    'graph_sizes': tf.compat.v1.placeholder(tf.int32, shape=(FLAGS.ecd_batchsize)),
-    'generated_labels':tf.compat.v1.placeholder(tf.float32, shape=(FLAGS.batchsize, FLAGS.k)),
-    'thres':tf.compat.v1.placeholder(tf.float32, shape=(FLAGS.hash_code_len))
+    'graph_sizes': tf.placeholder(tf.int32, shape=(FLAGS.ecd_batchsize)),
+    'generated_labels':tf.placeholder(tf.float32, shape=(FLAGS.batchsize, FLAGS.k)),
+    'thres':tf.placeholder(tf.float32, shape=(FLAGS.hash_code_len))
 }
 
 
@@ -104,10 +104,10 @@ model = GraphHash_Emb_Code(placeholders,
 
 
 # Initialize session
-sess = tf.compat.v1.Session(config=config)
+sess = tf.Session(config=config)
 
 # Init variables
-saver = tf.compat.v1.train.Saver()
+saver = tf.train.Saver()
 
 
 cost_val = []

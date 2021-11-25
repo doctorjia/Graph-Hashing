@@ -11,7 +11,7 @@ from config import FLAGS
 from DataFetcher import DataFetcher
 
 os.environ['CUDA_VISIBLE_DEVICES']='5'
-config = tf.compat.v1.ConfigProto()
+config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 
 MinGED = 0
@@ -47,14 +47,14 @@ data_fetcher = DataFetcher(dataset=FLAGS.dataset, exact_ged=True)
 node_feature_dim = data_fetcher.get_node_feature_dim()
 # Define placeholders
 placeholders = {
-    'support': tf.compat.v1.sparse_placeholder(tf.float32),
-    'features': tf.compat.v1.sparse_placeholder(tf.float32, shape=(None, node_feature_dim)),
+    'support': tf.sparse_placeholder(tf.float32),
+    'features': tf.sparse_placeholder(tf.float32, shape=(None, node_feature_dim)),
 #    'labels': tf.placeholder(tf.float32, shape=(FLAGS.batchsize, FLAGS.batchsize)),
-    'dropout': tf.compat.v1.placeholder_with_default(0., shape=()),
-    'graph_sizes': tf.compat.v1.placeholder(tf.int32, shape=(1)),
+    'dropout': tf.placeholder_with_default(0., shape=()),
+    'graph_sizes': tf.placeholder(tf.int32, shape=(1)),
 #    'graph_sizes': tf.placeholder(tf.int32, shape=(FLAGS.batchsize*(1+FLAGS.k))),
 #    'generated_labels':tf.placeholder(tf.float32, shape=(FLAGS.batchsize, FLAGS.k)),
-    'thres':tf.compat.v1.placeholder(tf.float32, shape=(FLAGS.hash_code_len))
+    'thres':tf.placeholder(tf.float32, shape=(FLAGS.hash_code_len))
 }
 
 thres = np.zeros(FLAGS.hash_code_len)
@@ -68,9 +68,9 @@ model = GraphHash_Emb_Code(placeholders,
                            logging=True)
 
 # Initialize session
-sess = tf.compat.v1.Session(config=config)
+sess = tf.Session(config=config)
 # Init variables
-saver = tf.compat.v1.train.Saver()
+saver = tf.train.Saver()
 saver.restore(sess, model_path)
 print("Model restored from", model_path)
 

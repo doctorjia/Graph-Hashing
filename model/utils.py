@@ -23,8 +23,8 @@ def construct_input(data):
         features = tf.sparse.reorder(features)
         laplacians = tf.sparse.reorder(laplacians)
     except AttributeError:
-        features = tf.compat.v1.sparse_reorder(features)
-        laplacians = tf.compat.v1.sparse_reorder(laplacians)
+        features = tf.sparse_reorder(features)
+        laplacians = tf.sparse_reorder(laplacians)
         
     return features, laplacians, data[6], data[7], data[8]
 

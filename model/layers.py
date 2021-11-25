@@ -27,16 +27,16 @@ def get_layer_uid(layer_name=''):
 def sparse_dropout(x, keep_prob, noise_shape):
     """Dropout for sparse tensors."""
     random_tensor = keep_prob
-    random_tensor = random_tensor+tf.compat.v1.random_uniform(shape=tf.reshape(noise_shape,[1]))
+    random_tensor = random_tensor+tf.random_uniform(shape=tf.reshape(noise_shape,[1]))
     dropout_mask = tf.cast(tf.floor(random_tensor), dtype=tf.bool)
-    pre_out = tf.compat.v1.sparse_retain(x, dropout_mask)
+    pre_out = tf.sparse_retain(x, dropout_mask)
     return pre_out * (1./keep_prob)
 
 
 def dot(x, y, sparse=False):
     """Wrapper for tf.matmul (sparse vs dense)."""
     if sparse:
-        res = tf.compat.v1.sparse_tensor_dense_matmul(x, y)
+        res = tf.sparse_tensor_dense_matmul(x, y)
     else:
         res = tf.matmul(x, y)
     return res
@@ -113,7 +113,7 @@ class Dense(Layer):
         # helper variable for sparse dropout
         #self.num_features_nonzero = placeholders['num_features_nonzero']
 
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             self.vars['weights'] = glorot([input_dim, output_dim],
                                           name='weights')
             if self.bias:
@@ -132,7 +132,7 @@ class Dense(Layer):
         
 
         # transform
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             # dropout
             if self.dropout:
                 weights = tf.nn.dropout(self.vars['weights'], 
@@ -176,7 +176,7 @@ class GraphConvolution_GCN(Layer):
         # helper variable for sparse dropout
         #self.num_features_nonzero = placeholders['num_features_nonzero']
         
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             
             self.vars['weights'] = glorot([input_dim, output_dim],
                                                         name='weights')
@@ -196,7 +196,7 @@ class GraphConvolution_GCN(Layer):
 #            x = tf.nn.dropout(x, rate=self.dropout)
 
         # convolve
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             if self.dropout:
             # dropout
                 weights = tf.nn.dropout(self.vars['weights'], 
@@ -260,7 +260,7 @@ class SplitAndAttentionPooling(Layer):
         # helper variable for sparse dropout
         #self.num_features_nonzero = placeholders['num_features_nonzero']
         
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             
             self.vars['weights'] = glorot([input_dim, input_dim],
                                                         name='weights')
@@ -274,7 +274,7 @@ class SplitAndAttentionPooling(Layer):
         features_list = tf.split(inputs[0], inputs[2])
         graph_emb_list = []
         
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             if self.dropout:
             # dropout
                 weights = tf.nn.dropout(self.vars['weights'], 
@@ -349,7 +349,7 @@ class NTN(Layer):
         # helper variable for sparse dropout
         #self.num_features_nonzero = placeholders['num_features_nonzero']
         
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             
             self.vars['W'] = glorot([output_dim, input_dim, input_dim],
                                                         name='W')
@@ -366,7 +366,7 @@ class NTN(Layer):
         x2 = inputs[0][1]
         x2_t = tf.transpose(x2, perm=[0,2,1])
         # convolve
-        with tf.compat.v1.variable_scope(self.name + '_vars'):
+        with tf.variable_scope(self.name + '_vars'):
             if self.dropout:
             # dropout
                 W = tf.nn.dropout(self.vars['W'], 

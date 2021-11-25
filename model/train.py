@@ -77,7 +77,7 @@ def updateProximityMat(sess, model, placeholders, data_fetcher, sample_embs):
 def train_model(sess, model, saver, placeholders, data_fetcher, 
                 save_path = "SavedModel/model_rank.ckpt"):
     print('start optimization...')
-    sess.run(tf.compat.v1.global_variables_initializer())
+    sess.run(tf.global_variables_initializer())
     if FLAGS.sample_by_proximity == True:
         sample_embs = initProximityMat(sess, model, placeholders, data_fetcher)
 
@@ -147,7 +147,7 @@ def train_GH_CSM(sess, model, saver, plhdr, data_fetcher,
                  csm, csm_saver, csm_data_fetcher,
                  save_path="SavedModel/model_csm.ckpt"):
     print('start optimization...')
-    sess.run(tf.compat.v1.global_variables_initializer())
+    sess.run(tf.global_variables_initializer())
     train_start = time.time()
     GH_train_losses = []
     CSM_train_costs, train_times = [], []
