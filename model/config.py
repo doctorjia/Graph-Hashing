@@ -4,7 +4,7 @@ flags = tf.compat.v1.flags
 FLAGS = flags.FLAGS
 
 #dataset related
-dataset = 'demo'
+dataset = 'AIDS'
 
 if 'linux' in dataset:
     flags.DEFINE_string('dataset', dataset,'Dataset string.')  # 'cora', 'citeseer', 'pubmed'
