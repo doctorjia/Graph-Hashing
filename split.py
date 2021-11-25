@@ -7,6 +7,7 @@ def train_test_split(input_name, stop_val):
     test_file = open("data/" + input_name + "/test/graphs.bss", "w")
     all_lines = infile.readlines()
     count_graphnum = 0
+    exceed_val = 0
     writing_in_train = True
     for each_line in all_lines:
         num_of_spaces = each_line.count(" ")
@@ -19,11 +20,13 @@ def train_test_split(input_name, stop_val):
         if num_of_spaces == 1:
             content = each_line.strip("\n").split(" ")
             if int(content[0]) > 50 or int(content[1]) > 50:
-                print("Exceed! Largest threshold should be " + content[0] + " " + content[1])
+                exceed_val = max(int(content[0]), int(content[1]))
         if writing_in_train:
             train_file.write(each_line)
         else:
             test_file.write(each_line)
+
+    print("Exceed! Largest threshold should be " + str(exceed_val))
 
     infile.close()
     train_file.close()
