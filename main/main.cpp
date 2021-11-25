@@ -11,7 +11,7 @@ using namespace std;
 
 #define CODELEN 32
 #define OUTPUTFILE "output.txt"
-#define dataset "All_linux50"
+#define dataset "AIDS"
 #define PRUNE
 
 int main(int argc, char **argv)

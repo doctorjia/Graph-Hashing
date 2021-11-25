@@ -340,7 +340,8 @@ Database::Database(const string &modelPath, const string &db,
 
 	string chdir_cmd = string("sys.path.append(\"") + pythonPath + "\")";
 	const char* cstr_cmd = chdir_cmd.c_str();
-	PyRun_SimpleString("import sys");
+	PyRun_SimpleString("import sys\n"
+					   "sys.argv = ['']");
 	PyRun_SimpleString(cstr_cmd);
 
 	PyObject *moduleName = PyUnicode_FromString("coreFunc");
