@@ -43,11 +43,11 @@ def train_test_split(input_name, stop_val):
     return count_graphnum
 
 
-# AIDS_num = train_test_split("AIDS", 42587)
-# ALCHEMY_num = train_test_split("ALCHEMY", 24087)
-# linux_num = train_test_split("linux15", 99676)
+AIDS_num = train_test_split("AIDS", 42587)
+ALCHEMY_num = train_test_split("ALCHEMY", 24087)
+linux_num = train_test_split("linux15", 99676)
 
-# print("AIDS: ", AIDS_num, "ALCHEMY: ", ALCHEMY_num, "linux15: ", linux_num)
+print("AIDS: ", AIDS_num, "ALCHEMY: ", ALCHEMY_num, "linux15: ", linux_num)
 
-test = train_test_split("temp", 1)
-print(test)
+# test = train_test_split("temp", 1)
+# print(test)
