@@ -15,7 +15,8 @@ def train_test_split(input_name, stop_val):
         num_of_spaces = each_line.count(" ")
         if num_of_spaces == 0:
             content = int(each_line.strip("\n"))
-            if content > 50:
+            if content > 222:
+                smallest_graphid = min(content, smallest_graphid)
                 count_graphnum += 1
             if count_graphnum == stop_val:
                 writing_in_train = False
@@ -29,6 +30,7 @@ def train_test_split(input_name, stop_val):
             test_file.write(each_line)
 
     print("Exceed! Largest threshold should be " + str(exceed_val))
+    print("Smallest id for " + input_name + " " + str(smallest_graphid))
 
     infile.close()
     train_file.close()
