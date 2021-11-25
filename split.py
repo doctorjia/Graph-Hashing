@@ -20,7 +20,7 @@ def train_test_split(input_name, stop_val):
                 smallest_graphid = min(content, smallest_graphid)
                 count_graphnum += 1
                 read_graphid = False
-            if count_graphnum == stop_val:
+            if count_graphnum > stop_val:
                 writing_in_train = False
         if num_of_spaces == 1:
             content = each_line.strip("\n").split(" ")
