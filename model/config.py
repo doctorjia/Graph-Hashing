@@ -1,10 +1,10 @@
 import tensorflow as tf
 # Settings
-flags = tf.compat.v1.flags
+flags = tf.flags
 FLAGS = flags.FLAGS
 
 #dataset related
-dataset = 'AIDS'
+dataset = 'linux15'
 
 if 'linux' in dataset:
     flags.DEFINE_string('dataset', dataset,'Dataset string.')  # 'cora', 'citeseer', 'pubmed'
