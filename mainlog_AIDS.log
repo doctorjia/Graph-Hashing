@@ -1,0 +1,5 @@
+Bit Weights:
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+[INFO] Python get module succeed
+[INFO] Get function (loadModel) succeed
+Failed to load model from ../model/SavedModel/0211_All_AIDS.ckpt.data-00000-of-00001

@@ -1,0 +1,71 @@
+Bit Weights:
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+[INFO] Python get module succeed
+[INFO] Get function (loadModel) succeed
+[INFO] Get function (getCodeAndEmbByGid) succeed
+Loading graphs...
+Finish loading graphs
+Loading inverted index
+Finish loading inverted index
+Loading database done
+ub = 0, average response time = 0.0363543 s
+average encode time: 0.00701165; average search time: 0.00220561; average verify time: 0.0271355; results written in output/AIDS_t=0_output.txt
+ub = 1, average response time = 0.0573237 s
+average encode time: 0.00300524; average search time: 0.00426765; average verify time: 0.0500493; results written in output/AIDS_t=1_output.txt
+ub = 2, average response time = 0.089597 s
+average encode time: 0.0029391; average search time: 0.00515794; average verify time: 0.0814979; results written in output/AIDS_t=2_output.txt
+ub = 3, average response time = 0.173054 s
+average encode time: 0.00304198; average search time: 0.00784598; average verify time: 0.162164; results written in output/AIDS_t=3_output.txt
+ub = 4, average response time = 0.300862 s
+average encode time: 0.00308479; average search time: 0.0101929; average verify time: 0.287582; results written in output/AIDS_t=4_output.txt
+ub = 5, average response time = 0.620322 s
+average encode time: 0.00321276; average search time: 0.0124737; average verify time: 0.604632; results written in output/AIDS_t=5_output.txt
+ub = 6, average response time = 1.7921 s
+average encode time: 0.00369609; average search time: 0.0182372; average verify time: 1.77016; results written in output/AIDS_t=6_output.txt
+finished 1000 files
+finished 2000 files
+finished 3000 files
+finished 4000 files
+finished 5000 files
+finished 6000 files
+finished 7000 files
+finished 8000 files
+finished 9000 files
+finished 10000 files
+finished 11000 files
+finished 12000 files
+finished 13000 files
+finished 14000 files
+finished 15000 files
+finished 16000 files
+finished 17000 files
+finished 18000 files
+finished 19000 files
+finished 20000 files
+finished 21000 files
+finished 22000 files
+finished 23000 files
+finished 24000 files
+finished 25000 files
+finished 26000 files
+finished 27000 files
+finished 28000 files
+finished 29000 files
+finished 30000 files
+finished 31000 files
+finished 32000 files
+finished 33000 files
+finished 34000 files
+finished 35000 files
+finished 36000 files
+finished 37000 files
+finished 38000 files
+finished 39000 files
+finished 40000 files
+finished 41000 files
+finished 42000 files
+test 0/100=0.0%
+test 25/100=25.0%
+test 55/100=55.0%
+test 86/100=86.0%
+Model restored from ../model/SavedModel/0211_All_AIDS.ckpt
