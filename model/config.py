@@ -4,7 +4,7 @@ flags = tf.flags
 FLAGS = flags.FLAGS
 
 #dataset related
-dataset = 'linux15'
+dataset = 'ALCHEMY'
 
 if 'linux' in dataset:
     flags.DEFINE_string('dataset', dataset,'Dataset string.')  # 'cora', 'citeseer', 'pubmed'
