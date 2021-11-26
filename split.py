@@ -44,8 +44,8 @@ def train_test_split(input_name, stop_val):
 
 
 AIDS_num = train_test_split("AIDS", 42587)
-ALCHEMY_num = train_test_split("ALCHEMY", 24087)
-linux_num = train_test_split("linux15", 99676)
+ALCHEMY_num = train_test_split("ALCHEMY", 99676)
+linux_num = train_test_split("linux15", 24087)
 
 print("AIDS: ", AIDS_num, "ALCHEMY: ", ALCHEMY_num, "linux15: ", linux_num)
 
