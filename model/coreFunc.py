@@ -9,7 +9,7 @@ from graphHashFunctions import GraphHash_Emb_Code
 from config import FLAGS
 from DataFetcher import DataFetcher
 
-tf.disable_eager_execution()
+# tf.disable_eager_execution()
 os.environ['CUDA_VISIBLE_DEVICES']='2'
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
